@@ -1,6 +1,6 @@
-# Serviço de Orçamento e Pagamento — Oficina Fase 4
+> Documentação central da Challenge Fase 4 em: [fiap-tc-fase4-oficina-os-service](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service).
 
-> Tech Challenge FIAP SOAT — Fase 4. Documentação central da solução: [`fiap-tc-fase4-oficina-os-service`](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service#readme).
+# Oficina Fase 4 - Serviço de Orçamento e Pagamento
 
 ## 1. Objetivo de negócio
 
@@ -10,7 +10,7 @@ Depois do diagnóstico, o cliente precisa saber **quanto vai pagar**, decidir se
 2. **Decisão do cliente:** o cliente aprova ou rejeita. Na rejeição, escolhe **refazer** o diagnóstico ou **cancelar** a OS.
 3. **Pagamento:** depois do reparo, gera a cobrança no **Mercado Pago (Checkout Pro)**, recebe o resultado pelo webhook e avisa a Saga (pago ou recusado). Depois de uma recusa, o cliente pode gerar uma **nova tentativa**.
 
-## 2. Requisitos atendidos
+## 2. Requisitos a serem atendidos
 
 **Funcionais**
 
@@ -43,6 +43,7 @@ Depois do diagnóstico, o cliente precisa saber **quanto vai pagar**, decidir se
 ## 3. Stack técnica
 
 Java 21 · Spring Boot 3.3 (Web, Validation, Security, Actuator, JPA sem Spring Data) · PostgreSQL 16 + Flyway · AWS SDK v2 (SQS) · Mercado Pago Checkout Pro (API REST via `RestClient`, sem SDK) · springdoc-openapi 2.6 (Swagger) · JUnit 5, Testcontainers (Postgres + LocalStack), ArchUnit, JaCoCo · Spotless · Docker · Kubernetes (EKS) · GitHub Actions + GHCR · SonarCloud · New Relic Java agent.
+to do - **Linguagem:** Java 21
 
 ## 4. Arquitetura
 
@@ -61,7 +62,7 @@ Clean Architecture com 4 camadas, validada por ArchUnit (`ArchitectureTest`):
 
 ![Ciclo de vida do orçamento e quem dispara cada mudança de status](docs/assets/estados-orcamento.png)
 
-## 5. Participação na Saga
+## 5. Participação na Saga Orquestrada da Ordem de Serviço
 
 Contrato completo: [`fiap-tc-fase4-oficina-os-service/docs/saga/contrato-mensagens.md`](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service/blob/homolog/docs/saga/contrato-mensagens.md).
 
