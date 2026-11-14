@@ -42,8 +42,20 @@ Depois do diagnóstico, o cliente precisa saber **quanto vai pagar**, decidir se
 
 ## 3. Stack técnica
 
-Java 21 · Spring Boot 3.3 (Web, Validation, Security, Actuator, JPA sem Spring Data) · PostgreSQL 16 + Flyway · AWS SDK v2 (SQS) · Mercado Pago Checkout Pro (API REST via `RestClient`, sem SDK) · springdoc-openapi 2.6 (Swagger) · JUnit 5, Testcontainers (Postgres + LocalStack), ArchUnit, JaCoCo · Spotless · Docker · Kubernetes (EKS) · GitHub Actions + GHCR · SonarCloud · New Relic Java agent.
-to do - **Linguagem:** Java 21
+- **Linguagem:** Java 21
+- **Framework:** Spring Boot 3.3 (Web, Validation, Security, Actuator, JPA sem Spring Data)
+- **Banco de dados:** Amazon RDS PostgreSQL 16, com Flyway
+- **Mensageria:** Amazon SQS (AWS SDK v2)
+- **Pagamento:** Mercado Pago Checkout Pro (API REST via `RestClient`, sem SDK) e modo fake
+- **Documentação da API:** springdoc-openapi 2.6 (Swagger)
+- **Testes:** JUnit 5, Testcontainers (Postgres + LocalStack), ArchUnit
+- **Cobertura:** JaCoCo
+- **Formatação:** Spotless
+- **Contêiner:** Docker
+- **Orquestração:** Kubernetes (Amazon EKS)
+- **CI/CD:** GitHub Actions, com imagens no GHCR
+- **Qualidade:** SonarCloud
+- **Observabilidade:** New Relic Java agent
 
 ## 4. Arquitetura
 
