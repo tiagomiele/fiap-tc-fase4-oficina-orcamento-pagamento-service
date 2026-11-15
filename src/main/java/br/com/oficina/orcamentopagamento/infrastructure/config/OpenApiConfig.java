@@ -25,7 +25,7 @@ public class OpenApiConfig {
         .info(
             new Info()
                 .title("Serviço de Orçamento e Pagamento")
-                .version("v1")
+                .version("v1.1")
                 .description(DESCRICAO))
         .components(
             new Components()
