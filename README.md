@@ -76,7 +76,7 @@ Clean Architecture com 4 camadas, validada por ArchUnit (`ArchitectureTest`):
 
 ## 5. Participação na Saga Orquestrada da Ordem de Serviço
 
-Contrato completo: [`fiap-tc-fase4-oficina-os-service/docs/saga/contrato-mensagens.md`](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service/blob/homolog/docs/saga/contrato-mensagens.md).
+Contrato completo: [`fiap-tc-fase4-oficina-os-service/docs/saga/contrato-mensagens.md`](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service/blob/main/docs-fase4/saga/contrato-mensagens.md).
 
 | Recebe (fila `oficina-<env>-orcamento-pagamento-comandos`) | Efeito |
 |---|---|
@@ -118,7 +118,7 @@ Mensagem que falha 5 vezes vai para a DLQ `oficina-<env>-orcamento-pagamento-com
 - `MERCADOPAGO_SANDBOX=true` usa o `sandbox_init_point` (contas e cartões de teste).
 - Erros da API (ex.: `invalid_access_token`) vão para o log com o código do MP, sem o token.
 
-**Provedor fake (padrão):** `PAYMENT_PROVIDER=fake` cria um link fictício e libera `POST /pagamentos/{numeroOs}/simular?aprovado=true|false`. É o modo usado no BDD e no **Validacao E2E**. Para a demonstração com o Mercado Pago, siga a seção do Mercado Pago no [Bootstrap da Fase 4](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service#readme) e volte para `fake` no final.
+**Provedor fake (padrão):** `PAYMENT_PROVIDER=fake` cria um link fictício e libera `POST /pagamentos/{numeroOs}/simular?aprovado=true|false`. É o modo usado no BDD e no **Validacao E2E**. Para a demonstração com o Mercado Pago, siga a seção do Mercado Pago no [bootstrap-aws-do-zero-fase4](https://github.com/tiagomiele/fiap-tc-fase4-oficina-os-service/blob/main/docs-fase4/bootstrap-aws-do-zero-fase4.md#20.1-Ligar-o-Mercado-Pago) e volte para `fake` no final.
 
 ## 7. API (Swagger)
 
@@ -253,16 +253,17 @@ O `configure-environment.ps1 -ConfigureMercadoPago` (OS Service) grava as creden
 
 O deploy aplica `k8s/` no namespace `oficina-orcamento-pagamento-<env>` (Deployment 384–640 Mi, HPA 1–3 réplicas por CPU 70%, PDB, Service LoadBalancer), só com `DEPLOY_ENABLED=true`. Ao final envia a URL do LoadBalancer ao workspace do Auth (`scripts/sync-service-url.py`); depois rode o **Terraform deploy** do Auth para o API Gateway apontar para ela.
 
-
 ### Evidência de cobertura de testes
 
-O build falha se a cobertura ficar abaixo de 80% (JaCoCo, `jacoco.minimum.coverage = 0.80` no `pom.xml`). Último CI verde em `homolog` (02/11/2026, 46 testes):
+O build falha se a cobertura ficar abaixo de 80% (JaCoCo, `jacoco.minimum.coverage = 0.80` no `pom.xml`).
 
 | Linhas | Instruções | Branches | Relatório |
 |---|---|---|---|
-| 99,0% | 99,4% | 93,9% | artefato `jacoco-report` do [run 41473064053](https://github.com/tiagomiele/fiap-tc-fase4-oficina-orcamento-pagamento-service/actions/runs/41473064053) |
+| 98,9% | 99,3% | 93,8% | artefato `jacoco-report` do [Run 43757359744](https://github.com/tiagomiele/fiap-tc-fase4-oficina-orcamento-pagamento-service/actions/runs/43757359744) |
 
-Quality Gate do SonarCloud: [painel do projeto](https://sonarcloud.io/summary/overall?id=tiagomiele_fiap-tc-fase4-oficina-orcamento-pagamento-service&branch=homolog). Para gerar o relatório local: `./mvnw verify` e abra `target/site/jacoco/index.html`.
+
+
+Quality Gate do SonarCloud: [painel do projeto](docs/Evidencias/Quality-Gate-Orcamento-e-Pagamento.pdf). Para gerar o relatório local: `./mvnw verify` e abra `target/site/jacoco/index.html`.
 
 ## 12. Observabilidade
 
